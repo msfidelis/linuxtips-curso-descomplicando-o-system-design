@@ -39,6 +39,11 @@
 | Orquestrador de Notificações Omnichannel para E-commerce | Intermediário | [Link](/cases/INTERMEDIARIO_OMNI_CHANNEL.md) |
 | Case de Consistência com SAGA Pattern | Intermediário | [Link](/cases/INTERMEDIARIO_SAGA.md) |
 | Case de Ledger REST | Avançado | [Link](/cases/AVANCADO_LEDGER_REST.md) |
+| Gestão de Pacotes e Beneficios | Avançado | [Link](/cases/AVANCADO_PACOTES_BENEFICIOS.md) |
+| Adaptação de Apostilas | Avançado | [Link](/cases/AVANCADO_RENDERIZACAO_APOSTILAS.md) |
+| Sistema de Contestação de Compras | Intermediário | [Link](/cases/INTERMEDIARIO_CONTESTACAO_COMPRAS.md) |
+| Sistema de Gestão de Pontos | Intermediário | [Link](/cases/INTERMEDIARIO_SISTEMA_DE_PONTOS.md) | 
+| Sistema de Votação de Reality Shows | Intermediário | [Link](/cases/INTERMEDIARIO_VOTACAO.md) |
 
 ## Cases Resolvidos 
 
