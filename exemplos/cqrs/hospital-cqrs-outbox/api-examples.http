@@ -1,0 +1,158 @@
+# ========================================
+# HOSPITAL CQRS - EXEMPLOS DE REQUISIÇÕES
+# ========================================
+
+# ========================================
+# COMMAND SERVICE (Porta 3000)
+# ========================================
+
+### Health Check - Command Service
+GET http://localhost:3000/health
+
+### Listar Médicos
+GET http://localhost:3000/api/v1/medicos
+
+### Listar Pacientes
+GET http://localhost:3000/api/v1/pacientes
+
+### Listar Medicamentos
+GET http://localhost:3000/api/v1/medicamentos
+
+### Criar Prescrição - Exemplo 1 (Simples)
+POST http://localhost:3000/api/v1/prescricoes
+Content-Type: application/json
+
+{
+  "id_medico": 1,
+  "id_paciente": 1,
+  "medicamentos": [
+    {
+      "id_medicamento": 1,
+      "horario": "08:00, 14:00, 20:00",
+      "dosagem": "500mg"
+    }
+  ]
+}
+
+### Criar Prescrição - Exemplo 2 (Múltiplos Medicamentos)
+POST http://localhost:3000/api/v1/prescricoes
+Content-Type: application/json
+
+{
+  "id_medico": 2,
+  "id_paciente": 2,
+  "medicamentos": [
+    {
+      "id_medicamento": 1,
+      "horario": "08:00, 20:00",
+      "dosagem": "500mg"
+    },
+    {
+      "id_medicamento": 5,
+      "horario": "12:00, 18:00",
+      "dosagem": "600mg"
+    },
+    {
+      "id_medicamento": 3,
+      "horario": "Antes do café da manhã",
+      "dosagem": "20mg"
+    }
+  ]
+}
+
+### Criar Prescrição - Exemplo 3 (Cardiologia)
+POST http://localhost:3000/api/v1/prescricoes
+Content-Type: application/json
+
+{
+  "id_medico": 1,
+  "id_paciente": 5,
+  "medicamentos": [
+    {
+      "id_medicamento": 6,
+      "horario": "12:00",
+      "dosagem": "50mg"
+    },
+    {
+      "id_medicamento": 8,
+      "horario": "Antes de dormir",
+      "dosagem": "20mg"
+    }
+  ]
+}
+
+### Criar Prescrição - Exemplo 4 (Pediatria)
+POST http://localhost:3000/api/v1/prescricoes
+Content-Type: application/json
+
+{
+  "id_medico": 3,
+  "id_paciente": 4,
+  "medicamentos": [
+    {
+      "id_medicamento": 1,
+      "horario": "De 6 em 6 horas",
+      "dosagem": "250mg (infantil)"
+    },
+    {
+      "id_medicamento": 4,
+      "horario": "De 8 em 8 horas",
+      "dosagem": "250mg (infantil)"
+    }
+  ]
+}
+
+# ========================================
+# QUERY SERVICE (Porta 3001)
+# ========================================
+
+### Health Check - Query Service
+GET http://localhost:3001/health
+
+### Listar Todas as Prescrições da Farmácia
+GET http://localhost:3001/api/v1/farmacia/prescricoes
+
+### Buscar Prescrição Específica da Farmácia - ID 1
+GET http://localhost:3001/api/v1/farmacia/prescricoes/1
+
+### Buscar Prescrição Específica da Farmácia - ID 2
+GET http://localhost:3001/api/v1/farmacia/prescricoes/2
+
+### Buscar Prontuário do Paciente - ID 1
+GET http://localhost:3001/api/v1/prontuario/pacientes/1
+
+### Buscar Prontuário do Paciente - ID 2
+GET http://localhost:3001/api/v1/prontuario/pacientes/2
+
+### Buscar Prontuário do Paciente - ID 3
+GET http://localhost:3001/api/v1/prontuario/pacientes/3
+
+### Buscar Prontuário do Paciente - ID 4
+GET http://localhost:3001/api/v1/prontuario/pacientes/4
+
+### Buscar Prontuário do Paciente - ID 5
+GET http://localhost:3001/api/v1/prontuario/pacientes/5
+
+# ========================================
+# FLUXO COMPLETO DE TESTE
+# ========================================
+
+# 1. Verificar médicos disponíveis
+# GET http://localhost:3000/api/v1/medicos
+
+# 2. Verificar pacientes disponíveis
+# GET http://localhost:3000/api/v1/pacientes
+
+# 3. Verificar medicamentos disponíveis
+# GET http://localhost:3000/api/v1/medicamentos
+
+# 4. Criar uma prescrição
+# POST http://localhost:3000/api/v1/prescricoes
+
+# 5. Aguardar 2-3 segundos para processamento assíncrono
+
+# 6. Consultar view da farmácia
+# GET http://localhost:3001/api/v1/farmacia/prescricoes
+
+# 7. Consultar prontuário do paciente
+# GET http://localhost:3001/api/v1/prontuario/pacientes/2

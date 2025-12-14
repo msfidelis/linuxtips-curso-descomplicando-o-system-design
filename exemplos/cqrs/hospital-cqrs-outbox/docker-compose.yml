@@ -1,0 +1,146 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: hospital
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - hospital-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      # KRaft settings
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: 'broker,controller'
+      KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:9093'
+      KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
+      
+      # Listeners
+      KAFKA_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://0.0.0.0:9092,CONTROLLER://kafka:9093'
+      KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
+      KAFKA_INTER_BROKER_LISTENER_NAME: 'PLAINTEXT'
+      
+      # Cluster settings
+      CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk'
+      
+      # Log settings
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824
+      KAFKA_LOG_RETENTION_CHECK_INTERVAL_MS: 300000
+    volumes:
+      - kafka-data:/tmp/kraft-combined-logs
+    networks:
+      - hospital-network
+    healthcheck:
+      test: ["CMD-SHELL", "kafka-broker-api-versions --bootstrap-server localhost:9092"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8090:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      DYNAMIC_CONFIG_ENABLED: 'true'
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - hospital-network
+
+
+  # Command Service (Write Side - CQRS)
+  command-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.command
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/hospital?sslmode=disable
+      KAFKA_BROKERS: kafka:29092
+      SERVICE_PORT: 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    networks:
+      - hospital-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    command: air -c .air.command.toml
+
+  # Event Handler (Asynchronous Processor - CQRS)
+  event-handler:
+    build:
+      context: .
+      dockerfile: Dockerfile.event
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/hospital?sslmode=disable
+      KAFKA_BROKERS: kafka:29092
+      KAFKA_GROUP_ID: hospital-event-handlers
+    volumes:
+      - .:/app
+    networks:
+      - hospital-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    command: air -c .air.event.toml
+
+  # Query Service (Read Side - CQRS)
+  query-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.query
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/hospital?sslmode=disable
+      SERVICE_PORT: 3001
+    ports:
+      - "3001:3001"
+    volumes:
+      - .:/app
+    networks:
+      - hospital-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: air -c .air.query.toml
+
+volumes:
+  postgres_data:
+  kafka-data:
+
+networks:
+  hospital-network:
+    driver: bridge
