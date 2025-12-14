@@ -116,7 +116,7 @@ func main() {
 		}
 	}()
 
-	log.Printf("✓ Command Service rodando na porta %s", port)
+	log.Printf("Command Service rodando na porta %s", port)
 
 	// Aguardar sinal de interrupção
 	quit := make(chan os.Signal, 1)

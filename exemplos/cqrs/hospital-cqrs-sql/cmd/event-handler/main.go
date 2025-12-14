@@ -32,7 +32,7 @@ func main() {
 	}
 	defer consumer.Close()
 
-	log.Println("✓ Event Handler iniciado, aguardando eventos...")
+	log.Println("Event Handler iniciado, aguardando eventos...")
 
 	// Context para cancelamento
 	ctx, cancel := context.WithCancel(context.Background())

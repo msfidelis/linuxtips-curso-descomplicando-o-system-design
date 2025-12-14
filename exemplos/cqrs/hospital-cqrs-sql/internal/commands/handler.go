@@ -81,7 +81,7 @@ func (h *PrescricaoHandler) CriarPrescricao(ctx context.Context, dto domain.Cria
 		// O evento poderá ser republicado posteriormente
 	}
 
-	log.Printf("✓ Prescrição criada com sucesso: ID %d", prescricao.ID)
+	log.Printf("Prescrição criada com sucesso: ID %d", prescricao.ID)
 	return prescricao, nil
 }
 

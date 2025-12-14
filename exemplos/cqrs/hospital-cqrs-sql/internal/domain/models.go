@@ -18,12 +18,12 @@ type Medico struct {
 
 // Paciente representa um paciente no sistema
 type Paciente struct {
-	ID              int       `json:"id" db:"id"`
-	Nome            string    `json:"nome" db:"nome"`
-	DataNascimento  time.Time `json:"data_nascimento" db:"data_nascimento"`
-	Endereco        string    `json:"endereco" db:"endereco"`
-	CreatedAt       time.Time `json:"created_at" db:"created_at"`
-	UpdatedAt       time.Time `json:"updated_at" db:"updated_at"`
+	ID             int       `json:"id" db:"id"`
+	Nome           string    `json:"nome" db:"nome"`
+	DataNascimento time.Time `json:"data_nascimento" db:"data_nascimento"`
+	Endereco       string    `json:"endereco" db:"endereco"`
+	CreatedAt      time.Time `json:"created_at" db:"created_at"`
+	UpdatedAt      time.Time `json:"updated_at" db:"updated_at"`
 }
 
 // Medicamento representa um medicamento disponível
@@ -37,11 +37,11 @@ type Medicamento struct {
 
 // Prescricao representa uma prescrição médica
 type Prescricao struct {
-	ID              int       `json:"id" db:"id"`
-	IDMedico        int       `json:"id_medico" db:"id_medico"`
-	IDPaciente      int       `json:"id_paciente" db:"id_paciente"`
-	DataPrescricao  time.Time `json:"data_prescricao" db:"data_prescricao"`
-	CreatedAt       time.Time `json:"created_at" db:"created_at"`
+	ID             int       `json:"id" db:"id"`
+	IDMedico       int       `json:"id_medico" db:"id_medico"`
+	IDPaciente     int       `json:"id_paciente" db:"id_paciente"`
+	DataPrescricao time.Time `json:"data_prescricao" db:"data_prescricao"`
+	CreatedAt      time.Time `json:"created_at" db:"created_at"`
 }
 
 // PrescricaoMedicamento representa a relação entre prescrição e medicamento
@@ -121,12 +121,12 @@ type ViewProntuarioPaciente struct {
 
 // PrescricaoFarmaciaDTO agrupa prescrições para a farmácia
 type PrescricaoFarmaciaDTO struct {
-	IDPrescricao           int                       `json:"id_prescricao"`
-	DataPrescricao         time.Time                 `json:"data_prescricao"`
-	PacienteID             int                       `json:"paciente_id"`
-	PacienteNome           string                    `json:"paciente_nome"`
-	PacienteDataNascimento time.Time                 `json:"paciente_data_nascimento"`
-	Medicamentos           []MedicamentoFarmaciaDTO  `json:"medicamentos"`
+	IDPrescricao           int                      `json:"id_prescricao"`
+	DataPrescricao         time.Time                `json:"data_prescricao"`
+	PacienteID             int                      `json:"paciente_id"`
+	PacienteNome           string                   `json:"paciente_nome"`
+	PacienteDataNascimento time.Time                `json:"paciente_data_nascimento"`
+	Medicamentos           []MedicamentoFarmaciaDTO `json:"medicamentos"`
 }
 
 // MedicamentoFarmaciaDTO representa medicamento para farmácia
@@ -140,22 +140,22 @@ type MedicamentoFarmaciaDTO struct {
 
 // ProntuarioPacienteDTO agrupa prescrições do prontuário
 type ProntuarioPacienteDTO struct {
-	PacienteID             int                         `json:"paciente_id"`
-	PacienteNome           string                      `json:"paciente_nome"`
-	PacienteDataNascimento time.Time                   `json:"paciente_data_nascimento"`
-	PacienteEndereco       string                      `json:"paciente_endereco"`
-	Prescricoes            []PrescricaoProntuarioDTO   `json:"prescricoes"`
+	PacienteID             int                       `json:"paciente_id"`
+	PacienteNome           string                    `json:"paciente_nome"`
+	PacienteDataNascimento time.Time                 `json:"paciente_data_nascimento"`
+	PacienteEndereco       string                    `json:"paciente_endereco"`
+	Prescricoes            []PrescricaoProntuarioDTO `json:"prescricoes"`
 }
 
 // PrescricaoProntuarioDTO representa uma prescrição no prontuário
 type PrescricaoProntuarioDTO struct {
-	IDPrescricao        int                            `json:"id_prescricao"`
-	DataPrescricao      time.Time                      `json:"data_prescricao"`
-	MedicoID            int                            `json:"medico_id"`
-	MedicoNome          string                         `json:"medico_nome"`
-	MedicoEspecialidade string                         `json:"medico_especialidade"`
-	MedicoCRM           string                         `json:"medico_crm"`
-	Medicamentos        []MedicamentoProntuarioDTO     `json:"medicamentos"`
+	IDPrescricao        int                        `json:"id_prescricao"`
+	DataPrescricao      time.Time                  `json:"data_prescricao"`
+	MedicoID            int                        `json:"medico_id"`
+	MedicoNome          string                     `json:"medico_nome"`
+	MedicoEspecialidade string                     `json:"medico_especialidade"`
+	MedicoCRM           string                     `json:"medico_crm"`
+	Medicamentos        []MedicamentoProntuarioDTO `json:"medicamentos"`
 }
 
 // MedicamentoProntuarioDTO representa medicamento no prontuário

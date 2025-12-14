@@ -30,6 +30,6 @@ func Connect() (*sql.DB, error) {
 		return nil, fmt.Errorf("erro ao conectar ao banco: %w", err)
 	}
 
-	log.Println("✓ Conectado ao PostgreSQL com sucesso")
+	log.Println("Conectado ao PostgreSQL com sucesso")
 	return db, nil
 }

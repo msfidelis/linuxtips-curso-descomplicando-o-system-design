@@ -36,7 +36,7 @@ func (r *PrescricaoRepository) CriarPrescricao(ctx context.Context, dto domain.C
 		RETURNING id, id_medico, id_paciente, data_prescricao, created_at
 	`
 	err = tx.QueryRowContext(ctx, query, dto.IDMedico, dto.IDPaciente, time.Now()).
-		Scan(&prescricao.ID, &prescricao.IDMedico, &prescricao.IDPaciente, 
+		Scan(&prescricao.ID, &prescricao.IDMedico, &prescricao.IDPaciente,
 			&prescricao.DataPrescricao, &prescricao.CreatedAt)
 	if err != nil {
 		return nil, nil, fmt.Errorf("erro ao inserir prescrição: %w", err)

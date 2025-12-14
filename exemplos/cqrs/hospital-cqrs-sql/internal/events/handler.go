@@ -76,7 +76,7 @@ func (h *PrescricaoEventHandler) HandlePrescricaoCriada(ctx context.Context, eve
 		}
 	}
 
-	log.Printf("✓ Evento processado: Views atualizadas para prescrição %d", idPrescricao)
+	log.Printf("Evento processado: Views atualizadas para prescrição %d", idPrescricao)
 	return nil
 }
 
@@ -102,7 +102,7 @@ func (h *PrescricaoEventHandler) atualizarViewFarmacia(ctx context.Context, idPr
 		return fmt.Errorf("erro ao inserir em View_Farmacia: %w", err)
 	}
 
-	log.Printf("✓ View Farmácia atualizada para prescrição %d", idPrescricao)
+	log.Printf("View Farmácia atualizada para prescrição %d", idPrescricao)
 	return nil
 }
 
@@ -130,17 +130,17 @@ func (h *PrescricaoEventHandler) atualizarViewProntuario(ctx context.Context, id
 		return fmt.Errorf("erro ao inserir em View_Prontuario_Paciente: %w", err)
 	}
 
-	log.Printf("✓ View Prontuário atualizada para prescrição %d", idPrescricao)
+	log.Printf("View Prontuário atualizada para prescrição %d", idPrescricao)
 	return nil
 }
 
 // Funções auxiliares para buscar dados
 func (h *PrescricaoEventHandler) getMedico(ctx context.Context, id int) (map[string]interface{}, error) {
 	var (
-		medicoID          int
-		nome              string
-		especialidade     string
-		crm               string
+		medicoID      int
+		nome          string
+		especialidade string
+		crm           string
 	)
 
 	query := `SELECT id, nome, especialidade, crm FROM Medicos WHERE id = $1`

@@ -29,7 +29,7 @@ func NewProducer(topic string) (*Producer, error) {
 		Balancer: &kafka.LeastBytes{},
 	}
 
-	log.Printf("✓ Produtor Kafka criado para tópico: %s\n", topic)
+	log.Printf("Produtor Kafka criado para tópico: %s\n", topic)
 	return &Producer{writer: writer}, nil
 }
 
@@ -49,7 +49,7 @@ func (p *Producer) Publish(ctx context.Context, key string, value interface{}) e
 		return fmt.Errorf("erro ao publicar mensagem: %w", err)
 	}
 
-	log.Printf("✓ Mensagem publicada no tópico %s com key: %s\n", p.writer.Topic, key)
+	log.Printf("Mensagem publicada no tópico %s com key: %s\n", p.writer.Topic, key)
 	return nil
 }
 

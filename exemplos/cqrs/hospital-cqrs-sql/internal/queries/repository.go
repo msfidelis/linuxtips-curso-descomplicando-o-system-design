@@ -119,16 +119,16 @@ func (r *QueryRepository) GetPrescricaoFarmaciaByID(ctx context.Context, idPresc
 
 	for rows.Next() {
 		var (
-			idPresc                int
-			dataPresc              time.Time
-			pacID                  int
-			pacNome                string
-			pacDataNasc            time.Time
-			medID                  int
-			medNome                string
-			medDesc                string
-			horario                string
-			dosagem                string
+			idPresc     int
+			dataPresc   time.Time
+			pacID       int
+			pacNome     string
+			pacDataNasc time.Time
+			medID       int
+			medNome     string
+			medDesc     string
+			horario     string
+			dosagem     string
 		)
 
 		if err := rows.Scan(&idPresc, &dataPresc, &pacID, &pacNome, &pacDataNasc,
@@ -193,21 +193,21 @@ func (r *QueryRepository) GetProntuarioPaciente(ctx context.Context, idPaciente 
 
 	for rows.Next() {
 		var (
-			idPresc         int
-			dataPresc       time.Time
-			pacID           int
-			pacNome         string
-			pacDataNasc     time.Time
-			pacEndereco     string
-			medID           int
-			medNome         string
-			medEspec        string
-			medCRM          string
-			medicID         int
-			medicNome       string
-			medicDesc       string
-			horario         string
-			dosagem         string
+			idPresc     int
+			dataPresc   time.Time
+			pacID       int
+			pacNome     string
+			pacDataNasc time.Time
+			pacEndereco string
+			medID       int
+			medNome     string
+			medEspec    string
+			medCRM      string
+			medicID     int
+			medicNome   string
+			medicDesc   string
+			horario     string
+			dosagem     string
 		)
 
 		if err := rows.Scan(&idPresc, &dataPresc, &pacID, &pacNome, &pacDataNasc, &pacEndereco,
