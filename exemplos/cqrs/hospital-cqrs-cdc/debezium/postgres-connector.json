@@ -1,0 +1,29 @@
+{
+  "name": "hospital-postgres-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "plugin.name": "pgoutput",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "hospital",
+    "database.server.name": "hospital_db",
+    "table.include.list": "public.prescricoes,public.prescricao_medicamentos",
+    "topic.prefix": "hospital_db",
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable": "false",
+    "value.converter.schemas.enable": "false",
+    "snapshot.mode": "initial",
+    "publication.autocreate.mode": "filtered",
+    "slot.name": "hospital_cdc_slot",
+    "decimal.handling.mode": "double",
+    "time.precision.mode": "adaptive",
+    "transforms": "unwrap",
+    "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+    "transforms.unwrap.drop.tombstones": "false",
+    "transforms.unwrap.delete.handling.mode": "rewrite",
+    "transforms.unwrap.add.fields": "op,source.ts_ms"
+  }
+}
