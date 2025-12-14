@@ -107,11 +107,11 @@ Resposta esperada (201 Created):
 Nos logs do **Event Handler** você verá:
 
 ```
-📨 Evento CDC recebido do tópico hospital_db.public.prescricoes (offset: 0)
+Evento CDC recebido do tópico hospital_db.public.prescricoes (offset: 0)
 📋 Processando prescrição CDC: ID=1 Médico=1 Paciente=1
 ✅ View Farmácia atualizada para prescrição 1
 ✅ View Prontuário atualizada para prescrição 1
-📨 Evento CDC recebido do tópico hospital_db.public.prescricao_medicamentos (offset: 0)
+Evento CDC recebido do tópico hospital_db.public.prescricao_medicamentos (offset: 0)
 💊 Processando medicamento CDC: Prescrição=1 Medicamento=1
 ✅ Medicamento CDC processado e views atualizadas
 ```

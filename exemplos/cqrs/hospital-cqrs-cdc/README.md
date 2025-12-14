@@ -250,7 +250,7 @@ docker exec kafka kafka-console-consumer \
 
 #### Nos Logs do Event Handler
 ```
-📨 Evento CDC recebido do tópico hospital_db.public.prescricoes (offset: 0)
+Evento CDC recebido do tópico hospital_db.public.prescricoes (offset: 0)
 📋 Processando prescrição CDC: ID=1 Médico=1 Paciente=1
 ✅ View Farmácia atualizada para prescrição 1
 ✅ View Prontuário atualizada para prescrição 1

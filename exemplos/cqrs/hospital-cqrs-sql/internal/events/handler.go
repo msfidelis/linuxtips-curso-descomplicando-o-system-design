@@ -39,7 +39,7 @@ func (h *PrescricaoEventHandler) HandlePrescricaoCriada(ctx context.Context, eve
 
 	medicamentosData := event.Data["medicamentos"].([]interface{})
 
-	log.Printf("📨 Processando evento: Prescrição %d criada", idPrescricao)
+	log.Printf("Processando evento: Prescrição %d criada", idPrescricao)
 
 	// Buscar dados completos para popular as views
 	medico, err := h.getMedico(ctx, idMedico)
