@@ -59,6 +59,10 @@
 | Ingestão e Telemetria | Avançado | [Link](/cases/AVANCADO_TELEMETRIA_LOGISTICA.md) |
 | Gestão de Vagas   | Avançado  | [Link](/cases/AVANCADO_CADASTRO_VAGAS.md) |
 | Controle de Ponto | Intermediário  | [Link](/cases/INTERMEDIARIO_GESTAO_DE_PONTO.md) | 
+| Push Notification | Intermediário  | [Link](/cases/INTERMEDIARIO_PUSH_NOTIFICATION.md) | 
+| Sistemas de Reservas Online | Avançado  | [Link](/cases/AVANCADO_RESERVA_ONLINE.md) | 
+| Formulários OCR | Avançado  | [Link](/cases/AVANCADO_FORMULARIOS_OCR.md) | 
+| Chats Imobiliários | Avançado  | [Link](/cases/AVANCADO_CHATS_IMOB.md) | 
 
 
 ## Cases Resolvidos 
@@ -83,3 +87,10 @@
 | E-Commerce            | [Draw.io](/cases/turma-2/T2-Case-Busca-Ecommerce.drawio)              |
 | Pedidos SAGA          | [Draw.io](/cases/turma-2/T2-Case-SAGA.drawio)                         |
 | Spikes de Promoção    | [Draw.io](/cases/turma-2/T2-Delivery.drawio.xml)                      |
+
+
+### Turma 03 - System Design 
+
+| Case                  | Link                                                                  |
+|-----------------------|-----------------------------------------------------------------------|
+| Encurtador de Links   | [Draw.io](/cases/turma-3/)          |
