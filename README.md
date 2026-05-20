@@ -87,6 +87,7 @@
 | E-Commerce            | [Draw.io](/cases/turma-2/T2-Case-Busca-Ecommerce.drawio)              |
 | Pedidos SAGA          | [Draw.io](/cases/turma-2/T2-Case-SAGA.drawio)                         |
 | Spikes de Promoção    | [Draw.io](/cases/turma-2/T2-Delivery.drawio.xml)                      |
+| Ingestao e Telemetria | [Draw.io](/cases/turma-2/T2-Logistica-Telemetria.drawio.xml)          |
 
 
 ### Turma 03 - System Design 
