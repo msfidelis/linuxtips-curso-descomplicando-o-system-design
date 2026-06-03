@@ -94,4 +94,4 @@
 
 | Case                  | Link                                                                  |
 |-----------------------|-----------------------------------------------------------------------|
-| Encurtador de Links   | [Draw.io](/cases/turma-3/)          |
+| Encurtador de Links   | [Draw.io](/cases/turma-3/T3-Case-Encurtador.drawio)                   |
