@@ -99,3 +99,12 @@
 | Indexação de Catalogo | [Draw.io](/cases/turma-3/T3-Busca-Indexacao.drawio)                   |
 | Ledger de Transações  | [Draw.io](/cases/turma-3/T3-Ledger.drawio.xml)                        | 
 | Sistema de Booking    | [Draw.io](/cases/turma-3/T3-Booking.drawio.xml)                       |
+
+
+### Turma 04 - System Design Professional 
+
+| Case                  | Link                                                                  |
+|-----------------------|-----------------------------------------------------------------------|
+| Encurtador de Links   | [Draw.io](/cases/turma-4/T4-Encurtador-de-Links.drawio.xml)           |
+
+
